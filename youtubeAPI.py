@@ -1,15 +1,17 @@
-import requests
-import json
+from pyyoutube import Api
 
 class YTstats:
-  def __init__(self,api_key,channel_id):
-    self.api_key = api_key
+  def __init__(self,apikey,channel_id):
+    self.api = Api(api_key=f"{apikey}")
     self.channel_id = channel_id
     self.channel_statistics = None
 
   def get_channel_statistics(self):
-    url = f'https://www.googleapis.com/youtube/v3/channels/?part=statistics%id={self.channel_id}%key={self.api_key}'
+    channel_by_id = self.api.get_channel_info(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw")
     #print(url)
-    json_url = requests.get(url)
-    data = json.loads(json_url.text)
-    print(data)
+    statistics = channel_by_id.items[0].to_dict()
+    return statistics
+  
+  def get_description(self):
+    dictionary = self.get_channel_statistics()
+    return dictionary['snippet']['description']
