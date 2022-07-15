@@ -1,7 +1,7 @@
 from youtubeAPI import YTstats
 from pyyoutube import Api
 
-yt = YTstats("AIzaSyCrqPhwI-0t28ejuQzHrTfrh89_S_g9Gg8","UC_x5XG1OV2P6uZZ5FSM9Ttw")
+yt = YTstats("key")
 
 print(yt.get_description())
 #video_by_id = api.get_video_by_id(video_id="CvTApw9X8aA")
